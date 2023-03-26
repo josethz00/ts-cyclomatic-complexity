@@ -13,7 +13,5 @@ function exampleFunction(a: number, b: number): number {
 const tmpSourceFile = ts.createSourceFile('temp.ts', typescriptCode, ts.ScriptTarget.Latest, true);
 
 ts.forEachChild(tmpSourceFile, node => {
-  if (ts.isFunctionDeclaration(node)) {
-    console.log(node.name);
-  }
+    console.log(node);
 })
