@@ -32,6 +32,7 @@ const visitNode = (node: ts.Node) => {
     case ts.SyntaxKind.WhileStatement:
     case ts.SyntaxKind.TryStatement:
     case ts.SyntaxKind.CatchClause:
+    case ts.SyntaxKind.ConditionalExpression:
       complexity += 1;
       break;
     case ts.SyntaxKind.SwitchStatement:
@@ -42,6 +43,18 @@ const visitNode = (node: ts.Node) => {
           complexity += 1;
         }
       });
+      break;
+    case ts.SyntaxKind.BinaryExpression:
+      const binaryExpr = node as ts.BinaryExpression;
+      if (
+        binaryExpr.operatorToken.kind ==
+          ts.SyntaxKind.AmpersandAmpersandToken ||
+        binaryExpr.operatorToken.kind == ts.SyntaxKind.BarBarToken
+      ) {
+        // if the binary expression token is AND or OR, it is an assertion branch
+        // so it increases the complexity in +1
+        complexity += 1;
+      }
       break;
   }
 
