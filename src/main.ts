@@ -17,12 +17,24 @@ const tmpSourceFile = ts.createSourceFile(
   true,
 );
 
+let complexity = 1;
+
 /**
  * Function to visit each node in the AST recursively
  * @param {ts.Node} node - The node to visit
  */
 const visitNode = (node: ts.Node) => {
-  console.log(node.kind);
+  switch (node.kind) {
+    case ts.SyntaxKind.IfStatement:
+    case ts.SyntaxKind.ForInStatement:
+    case ts.SyntaxKind.ForOfStatement:
+    case ts.SyntaxKind.ForStatement:
+    case ts.SyntaxKind.WhileStatement:
+    case ts.SyntaxKind.TryStatement:
+    case ts.SyntaxKind.CatchClause:
+      complexity += 1;
+  }
+
   ts.forEachChild(node, visitNode);
 };
 
