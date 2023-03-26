@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "start:dev": "tsnd -r tsconfig-paths/register --exit-child --transpile-only --ignore-watch node_modules src/main.ts",
+    "start": "yarn build && node dist/main.js",
     "typecheck": "tsc --noEmit",
     "build": "tsc"
   },
