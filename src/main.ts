@@ -4,7 +4,10 @@ const typescriptCode = `
 function exampleFunction(a: number, b: number): number {
   if (a > b) {
     return a;
-  } else {
+  } else if (!a) {
+    return a + b;
+  }
+    else {
     return b;
   }
 }
@@ -61,4 +64,5 @@ const visitNode = (node: ts.Node) => {
   ts.forEachChild(node, visitNode);
 };
 
-ts.forEachChild(tmpSourceFile, visitNode);
+visitNode(tmpSourceFile);
+console.log(complexity);
