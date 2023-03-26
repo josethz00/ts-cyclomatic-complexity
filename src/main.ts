@@ -33,13 +33,16 @@ const visitNode = (node: ts.Node) => {
     case ts.SyntaxKind.TryStatement:
     case ts.SyntaxKind.CatchClause:
       complexity += 1;
+      break;
     case ts.SyntaxKind.SwitchStatement:
       const switchStmt = node as ts.SwitchStatement;
       switchStmt.caseBlock.clauses.forEach((clause) => {
         if (ts.isCaseClause(clause)) {
+          // handle only case clausa, because it is not allowed to have a switch inside another
           complexity += 1;
         }
       });
+      break;
   }
 
   ts.forEachChild(node, visitNode);
