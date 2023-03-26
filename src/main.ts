@@ -1,21 +1,13 @@
 import ts from 'typescript';
+import fs from 'fs';
 
-const typescriptCode = `
-function exampleFunction(a: number, b: number): number {
-  if (a > b) {
-    return a;
-  } else if (!a) {
-    return a + b;
-  }
-    else {
-    return b;
-  }
-}
-`;
+const args = process.argv.slice(2);
+const fileToRead = args[0];
 
+const fileContent = fs.readFileSync(fileToRead, 'utf8');
 const tmpSourceFile = ts.createSourceFile(
-  'temp.ts',
-  typescriptCode,
+  'tmp.ts',
+  fileContent,
   ts.ScriptTarget.Latest,
   true,
 );
