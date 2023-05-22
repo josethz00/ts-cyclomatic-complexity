@@ -57,4 +57,4 @@ const visitNode = (node: ts.Node) => {
 };
 
 visitNode(tmpSourceFile);
-console.log(complexity);
+console.log('The cyclomatic complexity is: ', complexity);
