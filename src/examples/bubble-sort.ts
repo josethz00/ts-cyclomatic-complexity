@@ -17,5 +17,6 @@ export function bubbleSort(arr: number[]): number[] {
       }
     }
   }
+  // 4
   return arr;
 }

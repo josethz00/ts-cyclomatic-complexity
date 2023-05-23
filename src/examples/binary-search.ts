@@ -9,28 +9,28 @@ export function binarySearch(array: number[], target: number): number {
   let right = array.length - 1;
 
   while (left <= right) {
-    // first loop
+    // 1
     const mid = left + Math.floor((right - left) / 2);
 
     if (array[mid] === target) {
-      // first conditional
+      // 2
       return mid;
     }
 
     if (array[mid] < target) {
-      // second conditional
+      // 3
       left = mid + 1;
     } else {
-      // third conditional
+      // 4
       right = mid - 1;
     }
   }
 
   if (left > array.length || array[left] != target) {
-    // fourth conditional
+    // 5
     return -1;
   } else {
-    // fifth conditional
+    // 6
     return left;
   }
 }
